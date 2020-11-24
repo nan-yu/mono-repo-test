@@ -1,0 +1,9 @@
+kind: HierarchyConfig
+apiVersion: configmanagement.gke.io/v1
+metadata:
+  name: rbac
+spec:
+  resources:
+  - group: rbac.authorization.k8s.io
+    kinds: [ "RoleBinding" ]
+    hierarchyMode: inherit
