@@ -1,0 +1,22 @@
+kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: pod-quota
+  annotations:
+    configsync.gke.io/cluster-name-selector: csmr-test
+spec:
+  hard:
+    # Magic value that can be tested to prove that the quota has been applied.
+    pods: "133"
+---
+kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: pod-quota
+  annotations:
+    configsync.gke.io/cluster-name-selector: test
+spec:
+  hard:
+    # Magic value that can be tested to prove that the quota has been applied.
+    pods: "266"
+
