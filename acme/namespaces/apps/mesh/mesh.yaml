@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mesh
+  annotations:
+    configsync.gke.io/cluster-name-selector: cirrus-default
+  labels:
+    #istio-injection: enabled
+    # istio.io/rev: asm-182-2
+    admission.gatekeeper.sh/ignore: "true"
