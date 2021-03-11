@@ -1,0 +1,224 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: brokerappconfigs.gcp.solutions
+spec:
+  group: gcp.solutions
+  names:
+    kind: BrokerAppConfig
+    plural: brokerappconfigs
+    shortNames:
+    - bac
+    singular: brokerappconfig
+  scope: Namespaced
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          properties:
+            appEnv:
+              items:
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                required:
+                - name
+                - value
+                type: object
+              type: array
+            appParams:
+              items:
+                properties:
+                  default:
+                    type: string
+                  displayName:
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    type: string
+                required:
+                - name
+                - default
+                type: object
+              type: array
+            authorizedUsers:
+              items:
+                type: string
+              type: array
+            bundle:
+              properties:
+                configMapRef:
+                  properties:
+                    name:
+                      type: string
+                  required:
+                  - name
+                  type: object
+              required:
+              - configMapRef
+              type: object
+            defaultRepo:
+              type: string
+            defaultTag:
+              type: string
+            defaultTier:
+              type: string
+            description:
+              type: string
+            disableOptions:
+              type: boolean
+            disabled:
+              type: boolean
+            displayName:
+              type: string
+            editors:
+              items:
+                type: string
+              type: array
+            icon:
+              type: string
+            images:
+              additionalProperties:
+                properties:
+                  digest:
+                    type: string
+                  name:
+                    type: string
+                  newRepo:
+                    type: string
+                  newTag:
+                    type: string
+                  oldRepo:
+                    type: string
+                type: object
+              type: object
+            launchURL:
+              type: string
+            name:
+              type: string
+            nodeTiers:
+              items:
+                properties:
+                  name:
+                    type: string
+                  nodeLabel:
+                    type: string
+                  resources:
+                    properties:
+                      limits:
+                        properties:
+                          cpu:
+                            schema:
+                              oneOf:
+                              - type: string
+                              - type: number
+                          memory:
+                            type: string
+                        type: object
+                      requests:
+                        properties:
+                          cpu:
+                            schema:
+                              oneOf:
+                              - type: string
+                              - type: number
+                          memory:
+                            type: string
+                        type: object
+                    type: object
+                required:
+                - name
+                - nodeLabel
+                type: object
+              type: array
+            serviceName:
+              type: string
+            shutdownHooks:
+              items:
+                properties:
+                  command:
+                    type: string
+                  container:
+                    type: string
+                  selector:
+                    type: string
+                type: object
+              type: array
+            userParams:
+              items:
+                properties:
+                  default:
+                    type: string
+                  displayName:
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    type: string
+                required:
+                - name
+                - displayName
+                - type
+                - default
+                type: object
+              type: array
+            version:
+              type: string
+          required:
+          - version
+          - name
+          - displayName
+          - description
+          - bundle
+          - serviceName
+          - defaultRepo
+          - defaultTag
+          type: object
+      required:
+      - spec
+      type: object
+  versions:
+  - name: v1
+    served: true
+    storage: true
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: brokerappuserconfigs.gcp.solutions
+spec:
+  group: gcp.solutions
+  names:
+    kind: BrokerAppUserConfig
+    plural: brokerappuserconfigs
+    shortNames:
+    - bauc
+    singular: brokerappuserconfig
+  scope: Namespaced
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          properties:
+            appName:
+              type: string
+            imageRepo:
+              type: string
+            imageTag:
+              type: string
+            nodeTier:
+              type: string
+            params:
+              type: object
+            user:
+              type: string
+          type: object
+      type: object
+  versions:
+  - name: v1
+    served: true
+    storage: true
+
