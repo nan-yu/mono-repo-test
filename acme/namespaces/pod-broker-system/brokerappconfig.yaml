@@ -1,0 +1,57 @@
+apiVersion: gcp.solutions/v1
+kind: BrokerAppConfig
+metadata:
+  name: code-server
+  namespace: pod-broker-system
+spec:
+  appParams:
+  - default: desktop.ctltools.com
+    name: Domain
+  - default: port3000.desktop.ctltools.com
+    name: WebPreview3000
+  - default: port8000.desktop.ctltools.com
+    name: WebPreview8000
+  - default: xpra.desktop.ctltools.com
+    name: WebPreview8080
+  bundle:
+    configMapRef:
+      name: code-server-manifests-1.2.0
+  defaultRepo: gcr.io/sky-did-124945/code-server-gke-code-server-cloudshell
+  defaultTag: latest
+  defaultTier: chill
+  description: Development Environment that is accessible from a web browser
+  displayName: CTL Development Apps
+  icon: https://raw.githubusercontent.com/cdr/code-server/3.0.0/src/browser/media/pwa-icon-128.png
+  images:
+    cloudshell:
+      newRepo: gcr.io/sky-did-124945/code-server-gke-code-server-cloudshell
+      newTag: latest
+      oldRepo: gcr.io/cloud-solutions-images/code-server-gke-code-server-cloudshell
+    tinyfilemanager:
+      newRepo: gcr.io/sky-did-124945/code-server-gke-tinyfilemanager
+      newTag: latest
+      oldRepo: gcr.io/cloud-solutions-images/code-server-gke-tinyfilemanager
+  launchURL: https://desktop.ctltools.com/
+  name: code-server
+  nodeTiers:
+  - name: chill
+    nodeLabel: default-pool
+    resources:
+      limits:
+        cpu: 4
+        memory: 10Gi
+      requests:
+        cpu: 3
+        memory: 10Gi
+  serviceName: code
+  userParams:
+  - default: 'true'
+    displayName: Persistent home directory
+    name: enablePersistence
+    type: bool
+  - default: 'false'
+    displayName: Use Xpra
+    name: useXpra
+    type: bool
+  version: 1.0.0
+
