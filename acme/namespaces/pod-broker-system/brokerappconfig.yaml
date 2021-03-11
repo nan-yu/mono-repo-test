@@ -1,8 +1,6 @@
 apiVersion: gcp.solutions/v1
 kind: BrokerAppConfig
 metadata:
-  annotations:
-    configmanagement.gke.io/managed: disabled
   name: code-server
   namespace: pod-broker-system
 spec:
