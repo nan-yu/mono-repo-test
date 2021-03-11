@@ -112,9 +112,10 @@ spec:
                         properties:
                           cpu:
                             x-kubernetes-int-or-string: true
-                            oneOf:
-                            - type: string
-                            - type: number
+                            schema:
+                              oneOf:
+                              - type: string
+                              - type: number
                           memory:
                             type: string
                         type: object
@@ -122,9 +123,10 @@ spec:
                         properties:
                           cpu:
                             x-kubernetes-int-or-string: true
-                            oneOf:
-                            - type: string
-                            - type: number
+                            schema:
+                              oneOf:
+                              - type: string
+                              - type: number
                           memory:
                             type: string
                         type: object
