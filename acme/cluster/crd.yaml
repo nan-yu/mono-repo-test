@@ -111,14 +111,20 @@ spec:
                       limits:
                         properties:
                           cpu:
-                            x-kubernetes-int-or-string: true
+                            schema:
+                              oneOf:
+                              - type: string
+                              - type: number
                           memory:
                             type: string
                         type: object
                       requests:
                         properties:
                           cpu:
-                            x-kubernetes-int-or-string: true
+                            schema:
+                              oneOf:
+                              - type: string
+                              - type: number
                           memory:
                             type: string
                         type: object
