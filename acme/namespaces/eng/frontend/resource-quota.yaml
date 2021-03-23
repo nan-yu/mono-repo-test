@@ -12,7 +12,7 @@ spec:
 kind: ResourceQuota
 apiVersion: v1
 metadata:
-  name: pod-quota
+  name: pod-quota-2
   annotations:
     configsync.gke.io/cluster-name-selector: test
 spec:
